@@ -16,6 +16,13 @@ def get_hotels(
         stars: Optional[int] = Query(None, ge=1, le=5),
 
 ):
+    get_hotels = [
+        {
+            "address": "Kashtanovaya street 15",
+            "name": "Super Hotel",
+            "stars": 5,
+        }
+    ]
     return location, date_from, date_to, stars, has_spa
 
 
