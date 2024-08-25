@@ -13,7 +13,7 @@ class SHotel(BaseModel):
     stars: int
 
 
-@app.get("/hotels")
+@app.get("/hotels", response_model=list[SHotel])
 def get_hotels(
         location: str,
         date_from: date,
@@ -22,14 +22,14 @@ def get_hotels(
         stars: Optional[int] = Query(None, ge=1, le=5),
 
 ):
-    get_hotels = [
+    hotels = [
         {
             "address": "Kashtanovaya street 15",
             "name": "Super Hotel",
             "stars": 5,
         }
     ]
-    return location, date_from, date_to, stars, has_spa
+    return hotels
 
 
 class SBooking(BaseModel):
