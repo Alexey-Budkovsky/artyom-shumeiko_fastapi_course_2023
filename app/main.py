@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from typing import Optional
 
 
 app = FastAPI()
@@ -9,7 +10,8 @@ def get_hotels(
         location,
         date_from,
         date_to,
-        stars,
-        has_spa,
+        has_spa: Optional[bool] = None,
+        stars: Optional[int] = None,
+
 ):
-    return date_from, date_to
+    return location, date_from, date_to, stars, has_spa
