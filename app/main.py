@@ -11,7 +11,7 @@ class SHotel(BaseModel):
     address: str
     name: str
     stars: int
-    has_spa: bool
+
 
 
 @app.get("/hotels")
