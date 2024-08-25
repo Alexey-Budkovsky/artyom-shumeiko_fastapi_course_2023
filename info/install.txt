@@ -1,0 +1,6 @@
+-- установить всю экосистему FastAPI
+pip install fastapi[all]
+
+-- requirements.txt
+pip freeze > requirements.txt
+
