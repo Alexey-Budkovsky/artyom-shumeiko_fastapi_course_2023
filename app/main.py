@@ -7,6 +7,12 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+class SHotel(BaseModel):
+    address: str
+    name: str
+    stars: int
+
+
 @app.get("/hotels")
 def get_hotels(
         location: str,
