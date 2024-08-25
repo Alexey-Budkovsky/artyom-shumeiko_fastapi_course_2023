@@ -1,0 +1,2 @@
+-- запуск из корневого каталога
+uvicorn app.main:app --reload
