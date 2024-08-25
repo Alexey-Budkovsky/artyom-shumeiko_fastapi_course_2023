@@ -1,3 +1,9 @@
+.venv
+__pycache__
+.env
+*.pptx
+.idea
+
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -6,3 +12,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/misc.xml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+/inspectionProfiles/Project_Default.xml
+/vcs.xml
