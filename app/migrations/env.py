@@ -41,8 +41,9 @@ sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 Таким образом, эта команда позволяет импортировать модули из корневой директории проекта независимо от того, где находится выполняемый файл (`env.py` в данном случае).
 """
 
+from app.config import settings
+from app.database import Base
 # --> позволяет передать метаданные из `Base` в `target_metadata` (ниже)
-from app.database import Base, DATABASE_URL
 # --> связывает классы `Base` и `Hotels`
 # --> передавая метаданные `Hotels` в `Base` ==>
 from app.hotels.models import Hotels
@@ -52,7 +53,7 @@ from app.hotels.models import Hotels
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", f"{DATABASE_URL}?async_fallback=True")
+config.set_main_option("sqlalchemy.url", f"{settings.DATABASE_URL}?async_fallback=True")
 # -->
 """
 Этот фрагмент кода настраивает объект конфигурации Alembic для работы с асинхронным двигателем SQLAlchemy. Давайте подробно рассмотрим, что происходит в этих двух строках.
