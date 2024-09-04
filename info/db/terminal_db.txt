@@ -6,8 +6,12 @@ cd app
 -- создание папки `migrations` с содержимым
 alembic init migrations
 # ================================================= migration
+-- переход в корневую папку проекта
+cd ..
+
 -- создание миграции
 alembic revision --autogenerate -m "Initial migration"
+
 """
     ## Команда Alembic `alembic revision --autogenerate -m "Initial migration"`
 
@@ -53,6 +57,8 @@ Alembic автоматически сгенерирует миграцию, ко
 
 Команда `alembic revision --autogenerate -m "Initial migration"` является мощным инструментом для автоматического создания миграций базы данных в проектах на Python с использованием SQLAlchemy. Она позволяет эффективно управлять изменениями в структуре базы данных и обеспечивает надежность и безопасность при работе с базами данных.
 """
+
+# ================================================= sending to database
 
 -- прогон конкретной миграции
 alembic upgrade 4f8376af1811

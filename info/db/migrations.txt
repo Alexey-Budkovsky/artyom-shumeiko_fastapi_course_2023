@@ -1,0 +1,6 @@
+# ================================================= 1
+alembic revision --autogenerate -m "Initial migration"
+# ================================================= 2 (был удалён файл миграции с ошибками)
+alembic revision --autogenerate -m "New tables: Users, Rooms, Bookings. Version 2"
+
+alembic upgrade f61b3616194e@head

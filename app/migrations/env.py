@@ -40,13 +40,16 @@ sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
 Таким образом, эта команда позволяет импортировать модули из корневой директории проекта независимо от того, где находится выполняемый файл (`env.py` в данном случае).
 """
-
+# ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 from app.config import settings
 from app.database import Base
 # --> позволяет передать метаданные из `Base` в `target_metadata` (ниже)
 # --> связывает классы `Base` и `Hotels`
 # --> передавая метаданные `Hotels` в `Base` ==>
 from app.hotels.models import Hotels
+from app.bookings.models import *
+from app.rooms.models import *
+from app.users.models import *
 
 
 # this is the Alembic Config object, which provides
