@@ -4,3 +4,5 @@ pip install fastapi[all]
 -- requirements.txt
 pip freeze > requirements.txt
 
+-- библиотеки для авторизации, аутентификации: passlib, python-jose
+pip install passlib python-jose
