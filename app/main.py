@@ -1,13 +1,16 @@
+import uvicorn
 from fastapi import FastAPI, Query, Depends
 from typing import Optional
 from datetime import date
 from pydantic import BaseModel
 from app.bookings.router import router as router_bookings
-
+from app.users.router import router as router_users
 
 app = FastAPI()
 
+app.include_router(router_users)
 app.include_router(router_bookings)
+
 
 class HotelsSearchArgs:
     def __init__(
@@ -41,3 +44,6 @@ class SBooking(BaseModel):
 @app.post("/bookings")
 def add_booking(booking: SBooking):
     pass
+
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", reload=True)
