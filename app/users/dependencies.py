@@ -1,15 +1,17 @@
-from fastapi import Request, HTTPException, status, Depends
+from fastapi import Request, Depends
 from jose import jwt, JWTError
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 from app.config import settings
+from app.exceptions import TokenExpiredException, TokenAbsentException, IncorrectTokenFormatException, \
+    UserNotPresentException
 from app.users.dao import UsersDAO
 
 
 def get_token(request: Request):
     token = request.cookies.get('booking_access_token')
     if not token:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise TokenAbsentException
     return token
 
 
@@ -21,16 +23,16 @@ async def get_current_user(token: str = Depends(get_token)):
             algorithms=[settings.ENCRYPTION_ALGORITHM],
         )
     except JWTError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise IncorrectTokenFormatException
     expire = payload.get('exp')
     if (not expire) or (int(expire) < int(datetime.now(timezone.utc).timestamp())):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise TokenExpiredException
     user_id = payload.get('sub')
     if not user_id:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise UserNotPresentException
     user = await UsersDAO.find_one_or_none(id=int(user_id))
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+        raise UserNotPresentException
     return user
 
 
